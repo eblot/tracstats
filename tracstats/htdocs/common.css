@@ -67,3 +67,7 @@ table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSo
     font-weight: bold;
 }
 
+table#activitybyauthor tbody tr {
+    height: 40px;
+}
+
