@@ -523,11 +523,9 @@ class TracStatsPlugin(Component):
         for _, t, author, _, _ in revisions:
             if t > start:
                 week = time.strftime('%Y-%W', time.localtime(t))
-                try:
-                    d[author][week] += 1
-                except KeyError:
-                    d[author] = { week : 1 }
-
+                d.setdefault(author, {}).setdefault(week, 0)
+                d[author][week] += 1
+        maxaweek = max([max(d[author].values()) for author in d])
         stats = []
         for i, author in enumerate(sorted(set(author for _, _, author, _, _ in revisions))):
             commits = len(set(x[0] for x in revisions if x[2] == author))
@@ -558,6 +556,7 @@ class TracStatsPlugin(Component):
                           'name': author,
                           'url': req.href.stats("code", author=author),
                           'commits': commits,
+                          'ciscale': maxaweek,
                           'rate': '%.2f' % (rate and float(rate) or 0),
                           'changes': change,
                           'paths': paths,

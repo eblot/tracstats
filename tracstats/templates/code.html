@@ -256,7 +256,9 @@ $(document).ready(function()
         $("#byauthor${stat.id}").sparkline(values, {
                                 type: "bar",
                                 barColor: "lightgray",
+                                height: "40px",
                                 barWidth: 7,
+                                chartRangeMax: ${stat.ciscale},
                               });
     }
 );
