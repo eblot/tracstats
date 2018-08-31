@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import os.path
-from distutils.core import setup
+from setuptools import setup
 
 # Utility function to read the README file.
 def read(fname):
